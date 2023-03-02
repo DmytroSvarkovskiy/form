@@ -1,0 +1,50 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+import {
+  Form,
+  LoginTitle,
+  Label,
+  InputLoginForm,
+  WrapInput,
+  LoginButton,
+} from "./LoginForm.styled";
+import { Container } from "../Container";
+
+interface IData {
+  email: string;
+  password: string;
+}
+
+export const LoginForm: React.FC = () => {
+  const { register, handleSubmit } = useForm<IData>();
+  const onSubmit: SubmitHandler<IData> = (data: IData) => {
+    console.log(data);
+  };
+  return (
+    <Container>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <LoginTitle>Login</LoginTitle>
+        <WrapInput>
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <InputLoginForm
+              placeholder="mail@mail.com"
+              type="email"
+              id="email"
+              {...register("email")}
+            />
+          </div>
+          <div>
+            <Label htmlFor="password">Password</Label>
+            <InputLoginForm
+              placeholder="password"
+              type="password"
+              id="password"
+              {...register("password")}
+            />
+          </div>
+        </WrapInput>
+        <LoginButton type="submit">Login</LoginButton>
+      </Form>
+    </Container>
+  );
+};
