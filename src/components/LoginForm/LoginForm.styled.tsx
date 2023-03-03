@@ -25,12 +25,12 @@ export const Label = styled.label`
   display: block;
 `;
 export const InputLoginForm = styled.input`
-  width: 313px;
+  width: 335px;
   display: block;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
-  padding: 10px;
+  padding: 11px;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
 `;

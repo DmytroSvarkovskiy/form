@@ -15,9 +15,10 @@ interface IData {
 }
 
 export const LoginForm: React.FC = () => {
-  const { register, handleSubmit } = useForm<IData>();
+  const { register, handleSubmit, reset } = useForm<IData>();
   const onSubmit: SubmitHandler<IData> = (data: IData) => {
     console.log(data);
+    reset();
   };
   return (
     <Container>
@@ -30,7 +31,7 @@ export const LoginForm: React.FC = () => {
               placeholder="mail@mail.com"
               type="email"
               id="email"
-              {...register("email")}
+              {...register("email", { required: true })}
             />
           </div>
           <div>
@@ -39,7 +40,7 @@ export const LoginForm: React.FC = () => {
               placeholder="password"
               type="password"
               id="password"
-              {...register("password")}
+              {...register("password", { required: true })}
             />
           </div>
         </WrapInput>
