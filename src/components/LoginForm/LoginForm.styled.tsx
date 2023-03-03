@@ -39,6 +39,7 @@ export const WrapInput = styled.div`
   flex-direction: column;
   gap: 32px;
   margin-bottom: 60px;
+  position: relative;
 `;
 export const LoginButton = styled.button`
   width: 335px;
@@ -50,4 +51,16 @@ export const LoginButton = styled.button`
   border: none;
   color: #ffffff;
   cursor: pointer;
+`;
+export const Visiblebutton = styled.button`
+  position: absolute;
+  top: 142px;
+  left: 300px;
+  border: none;
+  background-color: transparent;
+  svg {
+    color: #9e9e9e;
+    width: 20px;
+    height: 20px;
+  }
 `;
