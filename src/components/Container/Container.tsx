@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
-export const Container=styled.div`
-    display:flex;
-    justify-content:center;
+import styled from 'styled-components'
+export const Container = styled.div`
+  width: 1440px;
+  display: flex;
 `
