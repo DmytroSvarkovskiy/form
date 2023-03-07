@@ -8,7 +8,7 @@ const EstablishmentCurrent = lazy(
 )
 const Categories = lazy(() => import('../pages/Categories/Categories'))
 const CategoriesInModeration = lazy(
-  () => import('../pages/CategoriesInModeration/CategoriesInModeration'),
+  () => import('../pages/EstablishInModeration/EstablishInModeration'),
 )
 const Customers = lazy(() => import('../pages/Customers/Customers'))
 const Roles = lazy(() => import('../pages/Roles/Roles'))
