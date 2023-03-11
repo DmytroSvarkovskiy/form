@@ -5,4 +5,5 @@ export const PageWrapper = styled.div`
   box-shadow: 0px 10px 20px rgba(129, 129, 129, 0.15);
   border-radius: 8px;
   background-color: #ffffff;
+  color: #333333;
 `

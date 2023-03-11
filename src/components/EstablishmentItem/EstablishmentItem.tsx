@@ -1,6 +1,9 @@
 import { BiPencil } from 'react-icons/bi'
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { format } from 'date-fns'
+import { Modal } from '../Modal/Modal'
+import { useToggle } from '../../hooks'
+import { FormDelete } from '../FormDelete/FormDelete'
 
 import {
   EstablishmentList,
@@ -12,8 +15,9 @@ import {
 
 type TProps = {
   title: string
+  id: string
   category: {
-    title: string
+    title: { name: string; lang: string }[]
     image: string
     id: string
   }
@@ -30,24 +34,34 @@ export const EstablishmentItem: React.FC<TProps> = ({
   createdAt,
   index,
   title,
+  id,
 }) => {
+  const { isOpen, open, close } = useToggle(false)
+  isOpen
+    ? document.body.classList.add('modal-open')
+    : document.body.classList.remove('modal-open')
+
+  const handleDeleteClick = () => {
+    close()
+  }
+  const firstPartImg = 'https://dev-api.radius.kitg.com.ua/public/image/'
   return (
-    <EstablishmentLi>
+    <EstablishmentLi id={id}>
       <EstablishmentList>
         <EstablishmentPoint>
           <input type="checkbox" />
         </EstablishmentPoint>
         <EstablishmentPoint>{index}</EstablishmentPoint>
         <EstablishmentPoint>
-          <img src={category.image} alt={title} />
+          <img src={firstPartImg + category.image} alt={title} />
           <p>{title}</p>
         </EstablishmentPoint>
-        <EstablishmentPoint>{category.title}</EstablishmentPoint>
+        <EstablishmentPoint>{category.title[0].name}</EstablishmentPoint>
         <EstablishmentPoint>
           {format(new Date(createdAt), 'MMM d, YYY')} at{' '}
           {format(new Date(createdAt), 'p')}
         </EstablishmentPoint>
-        <EstablishmentPoint>{address}</EstablishmentPoint>
+        <EstablishmentPoint>{address.slice(0, 73)}</EstablishmentPoint>
         <EstablishmentPoint>
           <div id={status.toLowerCase()}></div>
           {status}
@@ -58,9 +72,14 @@ export const EstablishmentItem: React.FC<TProps> = ({
           </EditBtn>
         </EstablishmentPoint>
         <EstablishmentPoint>
-          <DeleteBtn>
+          <DeleteBtn onClick={open}>
             <RiDeleteBinLine />
-          </DeleteBtn>
+          </DeleteBtn>{' '}
+          {isOpen && (
+            <Modal closeModal={handleDeleteClick}>
+              <FormDelete id={id} close={close} />
+            </Modal>
+          )}
         </EstablishmentPoint>
       </EstablishmentList>
     </EstablishmentLi>

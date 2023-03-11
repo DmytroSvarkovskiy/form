@@ -1,7 +1,7 @@
 import { AppLink } from './AppBar.styled'
 import { FiUsers } from 'react-icons/fi'
 import { TbLayoutDashboard } from 'react-icons/tb'
-import { RiBankLine } from 'react-icons/ri'
+import { RiBankLine, RiFileCopy2Line } from 'react-icons/ri'
 import { MdEqualizer } from 'react-icons/md'
 import { RiUserSettingsLine, RiLogoutBoxLine } from 'react-icons/ri'
 import {
@@ -17,7 +17,7 @@ import {
 } from './AppBar.styled'
 import { useState } from 'react'
 export const AppBar: React.FC = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(true)
   const onDropClick = () => {
     setVisible(true)
   }
@@ -48,7 +48,7 @@ export const AppBar: React.FC = () => {
                   <AppLink to="/establishments">Current establishments</AppLink>
                 </li>
                 <li>
-                  <AppLink to="/in-moderation">In moderation</AppLink>
+                  <AppLink to="/pending">Pending</AppLink>
                 </li>
               </DropLinkList>
             </EstablishmentWrap>
@@ -65,6 +65,13 @@ export const AppBar: React.FC = () => {
             <AppLink onClick={closeDrop} to="/customers">
               <FiUsers />
               Customers
+            </AppLink>
+          </LinkItem>
+          <LinkItem>
+            {' '}
+            <AppLink onClick={closeDrop} to="/bookings">
+              <RiFileCopy2Line />
+              Bookings
             </AppLink>
           </LinkItem>
           <LinkItem>

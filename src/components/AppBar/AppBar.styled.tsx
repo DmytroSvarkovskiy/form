@@ -25,7 +25,8 @@ export const AppLink = styled(NavLink)`
     width: 24px;
     height: 24px;
   }
-  &.active {
+  &.active,
+  &.activePage {
     color: #2bb54b;
     ::before {
       content: '';

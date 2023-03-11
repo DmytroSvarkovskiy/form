@@ -24,7 +24,6 @@ export const EstablishmentPoint = styled.li`
   }
   :nth-child(3) {
     width: 224px;
-    display: flex;
     gap: 8px;
     img {
       width: 44px;
@@ -32,6 +31,8 @@ export const EstablishmentPoint = styled.li`
       border-radius: 8px;
     }
     p {
+      display: flex;
+      align-items: center;
       width: 132px;
       height: 40px;
       overflow: auto;
@@ -48,6 +49,9 @@ export const EstablishmentPoint = styled.li`
   }
   :nth-child(6) {
     width: 206px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 4px;
     overflow: auto;
   }
   :nth-child(7) {
@@ -103,6 +107,7 @@ export const DeleteBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   svg {
     color: #dd1919;
     width: 20px;

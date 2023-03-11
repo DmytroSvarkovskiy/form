@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom'
 export const HeadingWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
   align-items: center;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.33;
-  margin-bottom: 20px;
+  color: #333333;
 `
 export const LinkCurrentPage = styled(Link)`
   background-color: #2bb54b;
@@ -18,7 +17,7 @@ export const LinkCurrentPage = styled(Link)`
   border-radius: 8px;
   line-height: 1.43;
   font-size: 14px;
-
+  margin: 24px 0 20px;
   svg {
     width: 20px;
     height: 20px;
@@ -85,6 +84,12 @@ export const ElInputWrap = styled.div`
     font-weight: 600;
     font-size: 14px;
     line-height: 1.43;
+    transition: color 250ms, border-color 250ms;
+    cursor: pointer;
+    &:hover {
+      border-color: #2bb54b;
+      color: #2bb54b;
+    }
     svg {
       width: 20px;
       height: 20px;
@@ -114,6 +119,18 @@ export const SettingsItem = styled.li`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.43;
+  &#active {
+    svg {
+      rotate: 0deg;
+    }
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    rotate: 180deg;
+    transition: rotate 300ms;
+  }
   :nth-child(1) {
     width: 40px;
     padding: 0 10px 0 0;
@@ -122,12 +139,17 @@ export const SettingsItem = styled.li`
     width: 87px;
   }
   :nth-child(3) {
+    cursor: pointer;
     width: 224px;
   }
   :nth-child(4) {
+    cursor: pointer;
+
     width: 144px;
   }
   :nth-child(5) {
+    cursor: pointer;
+
     width: 135px;
   }
   :nth-child(6) {

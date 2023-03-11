@@ -13,9 +13,15 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
     background-color:#f5f5f5;
     color: '#333333'; 
+    &.modal-open{
+      overflow:hidden;
+    }
   };
   a{
     text-decoration:none;
     color:inherit};
+    *,::before,::after{
+      box-sizing:border-box;
+    }
   
 `
