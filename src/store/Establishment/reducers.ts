@@ -31,9 +31,12 @@ export const establishmentSlice = createSlice({
     fetchEstablishmentFulfilled(state, action: PayloadAction<TResponse>): void {
       state.response = action.payload.models
       state.totalCount = action.payload.totalCount
+      state.error = false;
+      state.loading=false
     },
     establishmentError(state,{payload}: PayloadAction<boolean>): void {
       state.error = payload
+       state.loading=false
     },
     changeLimit(state, action: PayloadAction<string>) {
       state.limit = action.payload

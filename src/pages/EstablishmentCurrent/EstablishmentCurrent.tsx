@@ -50,7 +50,7 @@ const EstablishmentCurrent: React.FC = () => {
   const totalpage = Math.ceil(totalItemCount / +countItemOnWindow)
 
   useEffect(() => {
-    if (currentPage > totalpage) {
+    if (currentPage > totalpage && totalpage !== 0) {
       dispatch(allEstablishmentActions.changePage(1))
     }
     dispatch(
@@ -161,39 +161,48 @@ const EstablishmentCurrent: React.FC = () => {
               )}
             </ul>
           </div>
-          <BottomContainer>
-            <EstablishmentBottomItem>
-              Showing{' '}
-              {currentPage === 1
-                ? 1
-                : currentPage === totalpage
-                ? (currentPage - 1) * +countItemOnWindow + 1
-                : currentPage * +countItemOnWindow + 1 - +countItemOnWindow}
-              -
-              {currentPage === 1
-                ? establishmentList.length
-                : +currentPage === +totalpage
-                ? totalItemCount
-                : +countItemOnWindow * +currentPage}{' '}
-              of {totalItemCount} items
-            </EstablishmentBottomItem>
-            <EstablishmentBottomItem>
-              <Pagination onPageChange={onPageClick} pageCount={totalpage} />
-            </EstablishmentBottomItem>
-            <EstablishmentBottomItem>
-              Show
-              <SelectLimitPage
-                value={countItemOnWindow}
-                onChange={handleLimitPage}>
-                <option value="2">2</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </SelectLimitPage>
-              items
-            </EstablishmentBottomItem>
-          </BottomContainer>
+          {totalpage !== 0 && (
+            <BottomContainer>
+              <EstablishmentBottomItem>
+                Showing{' '}
+                {currentPage === 1
+                  ? 1
+                  : currentPage === totalpage
+                  ? (currentPage - 1) * +countItemOnWindow + 1
+                  : currentPage * +countItemOnWindow + 1 - +countItemOnWindow}
+                -
+                {currentPage === 1
+                  ? establishmentList.length
+                  : +currentPage === +totalpage
+                  ? totalItemCount
+                  : +countItemOnWindow * +currentPage}{' '}
+                of {totalItemCount} items
+              </EstablishmentBottomItem>
+              <EstablishmentBottomItem>
+                {totalpage > 1 && (
+                  <Pagination
+                    onPageChange={onPageClick}
+                    pageCount={totalpage}
+                  />
+                )}
+              </EstablishmentBottomItem>
+              {totalItemCount > +countItemOnWindow && (
+                <EstablishmentBottomItem>
+                  Show
+                  <SelectLimitPage
+                    value={countItemOnWindow}
+                    onChange={handleLimitPage}>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                  </SelectLimitPage>
+                  items
+                </EstablishmentBottomItem>
+              )}
+            </BottomContainer>
+          )}
         </PageWrapper>
       </div>
     </>
