@@ -12,6 +12,9 @@ import { useToggle } from '../../hooks'
 import { Modal } from '../../components'
 import { FilterWindow } from '../../components'
 import { IoIosArrowDown } from 'react-icons/io'
+import { DatePicker } from 'antd'
+import dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 import {
   HeadingWrap,
   LinkCurrentPage,
@@ -26,8 +29,6 @@ import {
   EstablishmentBottomItem,
 } from './EstablishmentCurrent.styled'
 import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
-
 const EstablishmentCurrent: React.FC = () => {
   const dispatch = useAppDispatch()
   const { isOpen, close, open } = useToggle(false)
@@ -66,7 +67,13 @@ const EstablishmentCurrent: React.FC = () => {
   }
 
   const onPageClick = ({ selected }: { selected: number }) => {
-    dispatch(allEstablishmentActions.changePage(+selected + 1))
+    selected + 1 !== currentPage &&
+      dispatch(allEstablishmentActions.changePage(+selected + 1))
+  }
+  const onChangeData = (date: Dayjs | null) => {
+    if (date) {
+      console.log('Date: ', date)
+    }
   }
 
   return (
@@ -88,15 +95,24 @@ const EstablishmentCurrent: React.FC = () => {
           <InputCurrentWrapper>
             <UnderInputCurrentWrapper>
               <ElInputWrap>
-                <FiSearch />
                 <label>
-                  <input placeholder="Search establishment" />
+                  <input name="search" placeholder="Search establishment" />
+                  <FiSearch />
                 </label>
               </ElInputWrap>
               <ElInputWrap>
-                <label>
-                  <input type="date" placeholder="Select date" />
-                </label>
+                <DatePicker
+                  presets={[
+                    { label: 'Yesterday', value: dayjs().add(-1, 'd') },
+                    { label: 'Last week', value: dayjs().add(-7, 'd') },
+                    {
+                      label: 'Last month',
+                      value: dayjs().add(-1, 'month'),
+                    },
+                    { label: 'All time ', value: dayjs() },
+                  ]}
+                  onChange={onChangeData}
+                />
               </ElInputWrap>
               <ElInputWrap onClick={open}>
                 <RiEqualizerLine /> Filter
@@ -133,7 +149,6 @@ const EstablishmentCurrent: React.FC = () => {
               <SettingsItem>Location</SettingsItem>
               <SettingsItem>Status</SettingsItem>
             </SettingsFilterList>
-            <Outlet />
             <ul>
               {establishmentList.map(
                 ({
@@ -186,7 +201,7 @@ const EstablishmentCurrent: React.FC = () => {
                   />
                 )}
               </EstablishmentBottomItem>
-              {totalItemCount > +countItemOnWindow && (
+              {totalItemCount > 5 && (
                 <EstablishmentBottomItem>
                   Show
                   <SelectLimitPage

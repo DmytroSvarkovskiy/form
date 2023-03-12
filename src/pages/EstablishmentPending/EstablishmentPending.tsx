@@ -2,9 +2,12 @@ import { Modal } from '../../components'
 import { useToggle } from '../../hooks'
 import { FiSearch } from 'react-icons/fi'
 import { RiEqualizerLine, RiDownloadFill } from 'react-icons/ri'
-import { HeadingWrap } from './EstablishedPending.styled'
+import { HeadingWrap } from '../EstablishmentCurrent'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useState } from 'react'
+import { DatePicker } from 'antd'
+import dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 import {
   InputCurrentWrapper,
   UnderInputCurrentWrapper,
@@ -20,28 +23,43 @@ const CategoriesInModeration: React.FC = () => {
     ' Establishment' | 'Category' | 'Date' | null
   >(null)
   const { close, isOpen, open } = useToggle(false)
+  const onChangeData = (date: Dayjs | null) => {
+    if (date) {
+      console.log('Date: ', date)
+    }
+  }
   return (
     <div>
-      {' '}
       {isOpen && (
         <Modal closeModal={close}>
           <FilterWindow close={close} />
         </Modal>
       )}
-      <HeadingWrap>Pending</HeadingWrap>
+      <HeadingWrap>
+        <p>Pending</p>
+      </HeadingWrap>
       <PageWrapper>
         <InputCurrentWrapper>
           <UnderInputCurrentWrapper>
             <ElInputWrap>
-              <FiSearch />
-              <label>
-                <input placeholder="Search establishment" />
+              <label htmlFor="search">
+                <input name="search" placeholder="Search establishment" />
+                <FiSearch />
               </label>
             </ElInputWrap>
             <ElInputWrap>
-              <label>
-                <input type="date" placeholder="Select date" />
-              </label>
+              <DatePicker
+                presets={[
+                  { label: 'Yesterday', value: dayjs().add(-1, 'd') },
+                  { label: 'Last week', value: dayjs().add(-7, 'd') },
+                  {
+                    label: 'Last month',
+                    value: dayjs().add(-1, 'month'),
+                  },
+                  { label: 'All time ', value: dayjs() },
+                ]}
+                onChange={onChangeData}
+              />
             </ElInputWrap>
             <ElInputWrap onClick={open}>
               <RiEqualizerLine /> Filter
@@ -50,7 +68,7 @@ const CategoriesInModeration: React.FC = () => {
           <DownloadWrap>
             <RiDownloadFill />
           </DownloadWrap>
-        </InputCurrentWrapper>{' '}
+        </InputCurrentWrapper>
         <SettingsFilterList>
           <SettingsItem>
             <label>
@@ -77,6 +95,8 @@ const CategoriesInModeration: React.FC = () => {
           <SettingsItem>Manager</SettingsItem>
           <SettingsItem>Status</SettingsItem>
         </SettingsFilterList>
+        <ul></ul>
+        <div></div>
       </PageWrapper>
     </div>
   )

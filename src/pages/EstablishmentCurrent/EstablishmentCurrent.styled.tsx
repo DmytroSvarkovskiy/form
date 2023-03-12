@@ -8,6 +8,12 @@ export const HeadingWrap = styled.div`
   font-size: 24px;
   line-height: 1.33;
   color: #333333;
+  margin: 28px 0 26px;
+  p {
+    display: flex;
+    height: 44px;
+    align-items: center;
+  }
 `
 export const LinkCurrentPage = styled(Link)`
   background-color: #2bb54b;
@@ -17,7 +23,6 @@ export const LinkCurrentPage = styled(Link)`
   border-radius: 8px;
   line-height: 1.43;
   font-size: 14px;
-  margin: 24px 0 20px;
   svg {
     width: 20px;
     height: 20px;
@@ -30,7 +35,7 @@ export const LinkCurrentPage = styled(Link)`
 export const InputCurrentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 60px;
+  padding: 0 0 12px;
   align-items: center;
 `
 export const UnderInputCurrentWrapper = styled.div`
@@ -41,46 +46,89 @@ export const UnderInputCurrentWrapper = styled.div`
 export const ElInputWrap = styled.div`
   display: flex;
   align-items: center;
+  height: 44px;
+  border-radius: 8px;
+  transition: border-color 250ms;
+  position: relative;
+
   :nth-child(1) {
-    padding: 12px;
     gap: 9.4px;
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
-    width: 315px;
-    height: 44px;
+
     svg {
+      transition: color 300ms;
       width: 20px;
       height: 20px;
       color: #9e9e9e;
+      position: absolute;
+      left: 12px;
+      top: 12px;
+    }
+    label {
+      position: relative;
     }
     input {
-      border: none;
-      background-color: transparent;
-      width: 260px;
+      transition: border-color 300ms;
+      border-radius: 8px;
+      border: 1px solid #e1e1e1;
+      padding: 12px 12px 12px 41px;
       outline: none;
+      height: 44px;
+      border: 1px solid #e1e1e1;
+      width: 315px;
       ::placeholder {
         color: #9e9e9e;
         font-weight: 400;
         font-size: 14px;
         line-height: 1.43;
       }
+      &:hover,
+      &:focus {
+        border: 1px solid #2bb54b;
+        + svg {
+          color: #2bb54b;
+        }
+      }
     }
   }
   :nth-child(2) {
-    justify-content: center;
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
-    gap: 9.4px;
-    width: 194px;
-    height: 44px;
+    border: none;
+    div {
+      border-radius: 8px;
+      width: 194px;
+      height: 44px;
+
+      &:hover {
+        border-color: #2bb54b;
+        svg {
+          color: #2bb54b;
+          transition: color 250ms;
+        }
+      }
+      &.ant-picker-focused {
+        border-color: #2bb54b;
+        svg {
+          color: #2bb54b;
+        }
+      }
+      div {
+        span {
+          span {
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+    }
   }
+
   :nth-child(3) {
-    justify-content: center;
     border: 1px solid #e1e1e1;
-    border-radius: 8px;
+
+    justify-content: center;
     gap: 9.4px;
     width: 150px;
-    height: 44px;
     font-weight: 600;
     font-size: 14px;
     line-height: 1.43;
@@ -108,7 +156,6 @@ export const DownloadWrap = styled.div`
 `
 export const SettingsFilterList = styled.ul`
   display: flex;
-  height: 60px;
   border-bottom: 1px solid #ededed;
   padding: 0 20px;
 `

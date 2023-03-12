@@ -16,6 +16,50 @@ export const GlobalStyle = createGlobalStyle`
     &.modal-open{
       overflow:hidden;
     }
+    .ant-picker-dropdown{
+      .ant-picker-panel-container{
+        .ant-picker-panel-layout{
+          .ant-picker-panel{
+            .ant-picker-date-panel{
+.ant-picker-body{
+table{
+  tbody{tr{
+    td{
+      &.ant-picker-cell-selected{div{background-color:#2bb54b;}
+
+}
+    }
+  }
+    .ant-picker-cell-today{
+.ant-picker-cell-inner{
+&::before{
+  content:'';
+  top:-8.5px;
+  left:-7.5px;
+  color:#333333;
+  background-color: #D8FDE4;
+  z-index:-1;
+  border:1px solid #2bb54b;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+
+}
+
+}
+    }
+  }
+}
+}
+            }
+            .ant-picker-footer{
+              a{color:#2bb54b;}
+              
+            }
+          }
+        }
+      }
+    }
   };
   a{
     text-decoration:none;
